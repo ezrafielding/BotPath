@@ -1,0 +1,2 @@
+class Robot:
+    pass

@@ -1,16 +1,29 @@
 from tkinter import Canvas
 
 class Grid:
+
     def __init__(self, dim, bots=[]):
         self.dim = dim
         self.bots = bots
+        self.initGridInfo()
+
+    def initGridInfo(self):
+        self.gridInfo = []
+        for i in range(self.dim[0]):
+            self.gridInfo.append([])
+            for j in range(self.dim[1]):
+                self.gridInfo[i].append(-1)
 
     def makeGrid(self, window):
-        self.canvas = Canvas(window, width=self.dim[0]*100, height=self.dim[1]*100)
+        self.canvas = Canvas(window, width=(self.dim[0]*100), height=(self.dim[1]*100))
         self.canvas.pack()
 
-    def updateGrid(self):
-        for i in range(self.dim[0]):
-            lineLength = 100
-            x = i*lineLength+lineLength/2
-            self.canvas.create_line(x,lineLength/2, x, self.dim[0]*lineLength-lineLength/2, fill='gray', dash=(2,2))
+    def updateGrid(self, squareSize=100):
+        for j in range(self.dim[1]):
+            augJ = j*squareSize
+            for i in range(self.dim[0]):
+                augI = i*squareSize
+                if self.gridInfo==0:
+                    self.canvas.create_rectangle(augI, augJ, augI+squareSize, augJ+squareSize, fill="black")
+                else:
+                    self.canvas.create_rectangle(augI, augJ, augI+squareSize, augJ+squareSize)

@@ -37,7 +37,8 @@ def spawnBots(world, robots):
             goalx = bot["goal"]["x"]
             goaly = bot["goal"]["y"]
 
-        world.bots.append(robot.Robot(
+        world.appendBot(robot.Robot(
+            name=bot.get("name"),
             pos=(posx,posy),
             goal=(goalx,goaly),
             color=bot["color"]

@@ -1,9 +1,11 @@
 {
     "robots": [
-        {"Name": "r1", "color": "blue"}
+        {"name": "r1", "color": "blue"},
+        {"name": "r2", "color": "red"}
     ],
     "gridSize": {"x": 6, "y": 6},
     "obstacles": [
-        {"x": 4, "y": 3}
+        {"x": 4, "y": 3},
+        {"x": 1, "y": 2}
     ]
 }

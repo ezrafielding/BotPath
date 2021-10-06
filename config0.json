@@ -1,4 +1,7 @@
 {
+    "robots": [
+        {"Name": "r1", "color": "blue"}
+    ],
     "gridSize": {"x": 6, "y": 6},
     "obstacles": [
         {"x": 4, "y": 3}

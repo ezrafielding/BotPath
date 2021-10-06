@@ -53,6 +53,6 @@ if __name__=="__main__":
 
     mainWindow = tk.Tk()
     worldGrid.makeGrid(mainWindow)
-    worldGrid.updateGrid()
+    worldGrid.updateGrid(init=True)
 
     mainWindow.mainloop()

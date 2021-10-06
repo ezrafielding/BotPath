@@ -3,6 +3,7 @@ from tkinter import Canvas
 class Grid:
 
     def __init__(self, dim, obst=[], bots=[]):
+        #TODO add grid scale factor
         self.dim = dim
         self.bots = bots
         self.obst = obst
@@ -35,17 +36,27 @@ class Grid:
         self.updateGridInfo(bot.pos[0], bot.pos[1], 1)
         self.updateGridInfo(bot.goal[0], bot.goal[1], 2)
 
-    def updateGrid(self, squareSize=100):
-        self.canvas.delete("robots")
-        for j in range(self.dim[1]):
-            augJ = (j*squareSize)
-            for i in range(self.dim[0]):
-                augI = (i*squareSize)
-                if self.gridInfo[i][j]==0:
-                    self.canvas.create_rectangle(augI, augJ, augI+squareSize, augJ+squareSize, fill="black")
-                else:
-                    self.canvas.create_rectangle(augI, augJ, augI+squareSize, augJ+squareSize)
+    def updateGrid(self, squareSize=100, init=False):
+        if init:
+            for j in range(self.dim[1]):
+                augJ = (j*squareSize)
+                for i in range(self.dim[0]):
+                    augI = (i*squareSize)
+                    if self.gridInfo[i][j]==0:
+                        self.canvas.create_rectangle(augI, augJ, augI+squareSize, augJ+squareSize, fill="black")
+                    else:
+                        self.canvas.create_rectangle(augI, augJ, augI+squareSize, augJ+squareSize)
         
+            for bot in self.bots:
+                goal = bot.goal
+                x0 = (goal[0]*100)
+                x1 = (goal[0]*100)+100
+                y0 = (goal[1]*100)
+                y1 = (goal[1]*100)+100
+                self.canvas.create_line(x0,y0,x1,y1, width=2, fill=bot.color)
+                self.canvas.create_line(x1,y0,x0,y1, width=2, fill=bot.color)
+        
+        self.canvas.delete("robots")
         for bot in self.bots:
             pos = bot.pos
             x0 = (pos[0]*100)+20
@@ -54,10 +65,6 @@ class Grid:
             y1 = (pos[1]*100)+80
             self.canvas.create_oval(x0,y0,x1,y1, fill=bot.color, tags="robots")
 
-            goal = bot.goal
-            x0 = (goal[0]*100)
-            x1 = (goal[0]*100)+100
-            y0 = (goal[1]*100)
-            y1 = (goal[1]*100)+100
-            self.canvas.create_line(x0,y0,x1,y1, width=2, fill=bot.color)
-            self.canvas.create_line(x1,y0,x0,y1, width=2, fill=bot.color)
+        #TODO Draw Path Lines for Robots
+
+    #TODO method that updates robots and UI until all bots are at goal

@@ -41,8 +41,9 @@ def spawnBots(world, robots):
             name=bot.get("name"),
             pos=(posx,posy),
             goal=(goalx,goaly),
-            h="manhattan",
-            color=bot["color"]
+            h=bot.get("heuristic"),
+            color=bot.get("color"),
+            grid=grid
         ))
 
 if __name__=="__main__":

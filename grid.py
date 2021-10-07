@@ -36,6 +36,16 @@ class Grid:
         self.updateGridInfo(bot.pos[0], bot.pos[1], 1)
         self.updateGridInfo(bot.goal[0], bot.goal[1], 2)
 
+    def getNeighbours(self, pos):
+        neigbours = []
+        for i in range(-1,2):
+            for j in range(-1,2):
+                lowerCheck = pos[0]+i>=0 and pos[1]+j>=0
+                upperCheck = pos[0]+i<self.dim[0] and pos[1]+j<self.dim[1]
+                if lowerCheck and upperCheck:
+                    neigbours.append(pos[0]+i, pos[1]+j)
+        return neigbours
+
     def updateGrid(self, squareSize=100, init=False):
         if init:
             for j in range(self.dim[1]):

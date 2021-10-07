@@ -1,10 +1,10 @@
 {
     "robots": [
-        {"name": "r1", "color": "blue"},
-        {"name": "r2", "color": "red"},
-        {"name": "r3", "color": "green"}
+        {"name": "r1", "color": "blue", "heuristic": "manhattan"},
+        {"name": "r2", "color": "red", "heuristic": "manhattan"},
+        {"name": "r3", "color": "green", "heuristic": "manhattan"}
     ],
-    "gridSize": {"x": 6, "y": 6},
+    "gridSize": {"x": 7, "y": 7},
     "obstacles": [
         {"x": 4, "y": 3},
         {"x": 1, "y": 2}

@@ -1,13 +1,17 @@
 {
     "robots": [
-        {"name": "r1", "color": "blue", "heuristic": "manhattan"},
-        {"name": "r2", "color": "red", "heuristic": "manhattan"},
-        {"name": "r3", "color": "green", "heuristic": "manhattan"}
+        {"name": "r1", "color": "blue", "heuristic": "manhattan", "position":{"x": 3, "y": 0}, "goal":{"x": 4, "y": 7}},
+        {"name": "r2", "color": "red", "heuristic": "manhattan", "position":{"x": 4, "y": 0}, "goal":{"x": 3, "y": 8}},
+        {"name": "r3", "color": "green", "heuristic": "manhattan", "position":{"x": 6, "y": 0}, "goal":{"x": 4, "y": 9}},
+        {"name": "r4", "color": "yellow", "heuristic": "manhattan", "position":{"x": 5, "y": 0}, "goal":{"x": 5, "y": 8}}
     ],
     "gridSize": {"x": 10, "y": 10},
     "blockSize": 50,
     "obstacles": [
-        {"x": 4, "y": 3},
-        {"x": 1, "y": 2}
+        {"x": 2, "y": 5},
+        {"x": 3, "y": 5},
+        {"x": 4, "y": 5},
+        {"x": 6, "y": 5},
+        {"x": 7, "y": 5}
     ]
 }

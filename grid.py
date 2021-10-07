@@ -1,5 +1,4 @@
 from tkinter import Canvas
-from time import sleep
 
 class Grid:
 

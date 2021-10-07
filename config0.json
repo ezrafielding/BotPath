@@ -4,7 +4,8 @@
         {"name": "r2", "color": "red", "heuristic": "manhattan"},
         {"name": "r3", "color": "green", "heuristic": "manhattan"}
     ],
-    "gridSize": {"x": 7, "y": 7},
+    "gridSize": {"x": 10, "y": 10},
+    "blockSize": 50,
     "obstacles": [
         {"x": 4, "y": 3},
         {"x": 1, "y": 2}

@@ -8,9 +8,12 @@ class Robot:
         self.goal = goal
         self.color = color
         self.path = []
+        self.traveled = []
         self.setHMeasure(h)
         self.atGoal = False
         self.grid = grid
+        self.A_star()
+        self.waiting = False
 
     def setHMeasure(self, h):
         if h=="manhattan":
@@ -33,10 +36,9 @@ class Robot:
     def euclideanH(self, pos):
         return self.euclid(pos, self.goal)
 
-    def euclid(pos1, pos2):
+    def euclid(self, pos1, pos2):
         return sqrt((pos1[0] - pos2[0])**2 + (pos1[1] - pos2[1])**2)
 
-    #TODO Method to find path (should be able to run again)
     def reconstructPath(self, cameFrom, current):
         totalPath = [current]
         while current in cameFrom.keys():
@@ -58,6 +60,7 @@ class Robot:
             current = heappop(openSet)[1]
             if current == self.goal:
                 self.path = self.reconstructPath(cameFrom, current)
+                self.path.pop(0)
                 return True
             for neighbour in self.grid.getNeighbours(current):
                 tempGScore = gscore.get(current, inf) + self.euclid(current, neighbour)
@@ -68,5 +71,18 @@ class Robot:
                     if (fscore[neighbour], neighbour) not in openSet:
                         heappush(openSet, (fscore[neighbour], neighbour))
         return False
-            
-    #TODO Method to move position
+    
+    def move(self):
+        if self.pos == self.goal:
+            self.atGoal = True
+            return True
+        if self.grid.openSpace(self.path[0][0],self.path[0][1]):
+            self.traveled.append(self.pos)
+            self.pos = self.path.pop(0)
+            self.waiting = False
+        elif self.waiting:
+            self.A_star()
+            self.waiting = False
+        else:
+            self.waiting = True
+        

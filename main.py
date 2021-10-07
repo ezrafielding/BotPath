@@ -4,6 +4,7 @@ import robot
 import json
 import sys
 import random
+import time
 
 def readSettings():
     try:
@@ -21,7 +22,7 @@ def rndPos(world, ux, lx, uy, ly):
     while not check:
         x = random.randint(lx,ux)
         y = random.randint(ly,uy)
-        check = world.openSpace(x,y)
+        check = world.openSpace(x,y,includeGoals=False)
     return x,y
 
 def spawnBots(world, robots):
@@ -32,7 +33,11 @@ def spawnBots(world, robots):
             posx = bot["position"]["x"]
             posy = bot["position"]["y"]
         if bot.get("goal") == None:
-            goalx,goaly = rndPos(world, world.dim[0]-1, 0, world.dim[1]-1, 0)
+            sameCheck = True
+            while sameCheck:
+                goalx,goaly = rndPos(world, world.dim[0]-1, 0, world.dim[1]-1, 0)
+                if (posx,posy) != (goalx,goaly):
+                    sameCheck = False
         else:
             goalx = bot["goal"]["x"]
             goaly = bot["goal"]["y"]
@@ -43,18 +48,20 @@ def spawnBots(world, robots):
             goal=(goalx,goaly),
             h=bot.get("heuristic"),
             color=bot.get("color"),
-            grid=grid
+            grid=world
         ))
 
 if __name__=="__main__":
     settings = readSettings()
 
     gridSize = settings["gridSize"]
-    worldGrid = grid.Grid((gridSize["x"],gridSize["y"]), obst=settings["obstacles"])
+    worldGrid = grid.Grid((gridSize["x"],gridSize["y"]), settings["blockSize"], obst=settings["obstacles"])
     spawnBots(worldGrid, settings["robots"])
 
     mainWindow = tk.Tk()
     worldGrid.makeGrid(mainWindow)
     worldGrid.updateGrid(init=True)
-
+    mainWindow.update()
+    while worldGrid.run(mainWindow):
+        time.sleep(0.5)
     mainWindow.mainloop()

@@ -1,7 +1,6 @@
 from tkinter import Canvas
 
 class Grid:
-
     def __init__(self, dim, scale, obst=[], bots=[]):
         self.dim = dim
         self.bots = bots

@@ -80,4 +80,5 @@ if __name__=="__main__":
     # Loop advancing world time step until all bots have completed
     while worldGrid.run(mainWindow):
         time.sleep(0.5)
+    print("Total time elapsed: ",worldGrid.clock)
     mainWindow.mainloop()

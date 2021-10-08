@@ -1,9 +1,9 @@
 {
     "robots": [
-        {"name": "r1", "color": "blue", "heuristic": "manhattan", "position":{"x": 3, "y": 0}, "goal":{"x": 4, "y": 7}},
-        {"name": "r2", "color": "red", "heuristic": "manhattan", "position":{"x": 4, "y": 0}, "goal":{"x": 3, "y": 8}},
-        {"name": "r3", "color": "green", "heuristic": "manhattan", "position":{"x": 6, "y": 0}, "goal":{"x": 4, "y": 9}},
-        {"name": "r4", "color": "yellow", "heuristic": "manhattan", "position":{"x": 5, "y": 0}, "goal":{"x": 5, "y": 8}}
+        {"name": "r1", "color": "blue", "heuristic": "diagonal", "position":{"x": 3, "y": 0}, "goal":{"x": 4, "y": 7}},
+        {"name": "r2", "color": "red", "heuristic": "diagonal", "position":{"x": 4, "y": 0}, "goal":{"x": 3, "y": 8}},
+        {"name": "r3", "color": "green", "heuristic": "diagonal", "position":{"x": 6, "y": 0}, "goal":{"x": 4, "y": 9}},
+        {"name": "r4", "color": "yellow", "heuristic": "diagonal", "position":{"x": 5, "y": 0}, "goal":{"x": 5, "y": 8}}
     ],
     "gridSize": {"x": 10, "y": 10},
     "blockSize": 50,

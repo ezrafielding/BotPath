@@ -12,6 +12,7 @@ class Grid:
         self.obst = obst
         self.scale = scale
         self.initGridInfo()
+        self.clock = 0
 
     def initGridInfo(self):
         '''
@@ -143,6 +144,7 @@ class Grid:
             # Updates tkinter window
             self.updateGrid()
             window.update()
+            self.clock += 1
             return True
         else:
             return False

@@ -1,0 +1,17 @@
+{
+    "robots": [
+        {"name": "r1", "color": "blue", "heuristic": "euclid"},
+        {"name": "r2", "color": "red", "heuristic": "manhattan"},
+        {"name": "r3", "color": "green", "heuristic": "diagonal"},
+        {"name": "r4", "color": "yellow", "heuristic": "euclid"}
+    ],
+    "gridSize": {"x": 10, "y": 10},
+    "blockSize": 50,
+    "obstacles": [
+        {"x": 1, "y": 5},
+        {"x": 2, "y": 3},
+        {"x": 4, "y": 5},
+        {"x": 5, "y": 7},
+        {"x": 7, "y": 5}
+    ]
+}

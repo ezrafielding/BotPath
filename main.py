@@ -74,6 +74,7 @@ if __name__=="__main__":
 
     # Display functions
     mainWindow = tk.Tk()
+    mainWindow.title("BotPath")
     worldGrid.makeGrid(mainWindow)
     worldGrid.updateGrid()
     mainWindow.update()

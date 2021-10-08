@@ -15,7 +15,6 @@ class Robot:
         self.setHMeasure(h)
         self.atGoal = False
         self.grid = grid
-        self.A_star()
         self.waiting = False
 
     def setHMeasure(self, h):
@@ -110,6 +109,9 @@ class Robot:
         '''
         Provides movement logic for each robot
         '''
+        # If no path exists use A* to make one
+        if len(self.path)==0:
+            self.A_star()
         # Checking if Goal has been reached first
         if self.pos == self.goal:
             self.atGoal = True

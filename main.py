@@ -60,7 +60,7 @@ if __name__=="__main__":
 
     mainWindow = tk.Tk()
     worldGrid.makeGrid(mainWindow)
-    worldGrid.updateGrid(init=True)
+    worldGrid.updateGrid()
     mainWindow.update()
     while worldGrid.run(mainWindow):
         time.sleep(0.5)

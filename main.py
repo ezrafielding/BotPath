@@ -7,6 +7,9 @@ import random
 import time
 
 def readSettings():
+    '''
+    Reads json config file
+    '''
     try:
         with open(sys.argv[1]) as f:
             return json.load(f)
@@ -18,6 +21,9 @@ def readSettings():
         exit()
 
 def rndPos(world, ux, lx, uy, ly):
+    '''
+    Finds an open random position
+    '''
     check = False
     while not check:
         x = random.randint(lx,ux)
@@ -26,22 +32,29 @@ def rndPos(world, ux, lx, uy, ly):
     return x,y
 
 def spawnBots(world, robots):
+    '''
+    Spawns Robots in world
+    '''
     for bot in robots:
+        # Sets position or creates a random one
         if bot.get("position") == None:
             posx,posy = rndPos(world, world.dim[0]-1, 0, world.dim[1]-1, 0)
         else:
             posx = bot["position"]["x"]
             posy = bot["position"]["y"]
+        # Sets a goal or creates a random one
         if bot.get("goal") == None:
             sameCheck = True
             while sameCheck:
                 goalx,goaly = rndPos(world, world.dim[0]-1, 0, world.dim[1]-1, 0)
+                # Random start and goal can not be identical
                 if (posx,posy) != (goalx,goaly):
                     sameCheck = False
         else:
             goalx = bot["goal"]["x"]
             goaly = bot["goal"]["y"]
 
+        # Adding robots to grid
         world.appendBot(robot.Robot(
             name=bot.get("name"),
             pos=(posx,posy),
@@ -53,15 +66,18 @@ def spawnBots(world, robots):
 
 if __name__=="__main__":
     settings = readSettings()
-
+    # Building world grid
     gridSize = settings["gridSize"]
     worldGrid = grid.Grid((gridSize["x"],gridSize["y"]), settings["blockSize"], obst=settings["obstacles"])
+    # Adding Robots
     spawnBots(worldGrid, settings["robots"])
 
+    # Display functions
     mainWindow = tk.Tk()
     worldGrid.makeGrid(mainWindow)
     worldGrid.updateGrid()
     mainWindow.update()
+    # Loop advancing world time step until all bots have completed
     while worldGrid.run(mainWindow):
         time.sleep(0.5)
     mainWindow.mainloop()
